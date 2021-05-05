@@ -1,0 +1,24 @@
+{
+  "name": "geodataapi",
+  "version": "1.0.0",
+  "description": "template for sit725 practice",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FaunaFication-737-780/geoDataApi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FaunaFication-737-780/geoDataApi/issues"
+  },
+  "homepage": "https://github.com/FaunaFication-737-780/geoDataApi#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.6"
+  }
+}
