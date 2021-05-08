@@ -88,7 +88,7 @@ const findOneData = async (animalName,collection,res)=>{
     // sort matched documents in descending order by rating
     sort: { rating: -1 },
     // Include only the `title` and `imdb` fields in the returned document
-    projection: { _id: 1, name: 1 },
+    projection: { _id: 0, name: 1,data:1 },
   };
 
   var result = await collection.findOne(query, options);
