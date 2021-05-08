@@ -1,45 +1,89 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	
+
 	<title>Quick Start - Leaflet</title>
 
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+
 	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+		integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+		crossorigin="" />
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+		integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+		crossorigin=""></script>
 
 
-	
+
 </head>
+
 <body>
 
 
 
-<div id="mapid" style="width: 600px; height: 400px;"></div>
-<script>
+	<div id="mapid" style="width: 600px; height: 400px;"></div>
+	<script>
+		var map = L.map('mapid').setView([-27.833, 133.583], 4);
 
-    var mymap = L.map('mapid').setView([-27.833, 133.583], 4);
+		L.tileLayer(
+			'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+				maxZoom: 18,
+				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+					'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+				id: 'mapbox/streets-v11',
+				tileSize: 512,
+				zoomOffset: -1
+			}).addTo(map);
 
-	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-		maxZoom: 18,
-		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-		id: 'mapbox/streets-v11',
-		tileSize: 512,
-		zoomOffset: -1
-	}).addTo(mymap);
+		var fc = {
+			"type": "FeatureCollection",
+			"features": [{
+				"type": "Feature",
+				"properties": {
+					"id": 5
+				},
+				"geometry": {
+					"type": "Point",
+					"coordinates":[139.66753516300003,
+          -43.63710878099994]
+				}
+			}]
+		}
 
-	polygon = L.polygon([[-31.82066202602414, 115.76475456437339],[-34.784389644249266, 116.10364812331744], [-33.715487257392525, 115.05364100657803]], {color:'red'}).addTo(mymap)
 
-</script>
+		var jsonLayer = L.geoJson(fc).addTo(map);
 
-<script src="https://embed.github.com/view/geojson/FaunaFication-737-780/geoDataApi/master/geojson/Agile%20Wallaby.geojson"></script>
+		//var coord = fc.features[0].geometry.coordinates;
+		//lalo = L.GeoJSON.coordsToLatLng(coord);
+		//map.setView(lalo, 18);
+		var bbox = [
+          139.66753516300003,
+          -43.63710878099994,
+          151.66461181600005,
+          -31.348037860999963
+        ]
+		var bbox1 = [ 
+			[-43.63710878099994,139.66753516300003],
+			[-31.348037860999963, 151.66461181600005]
+		]
+
+
+		map.fitBounds(bbox1)
+
+
+		//polygon = L.polygon([[-31.82066202602414, 115.76475456437339],[-34.784389644249266, 116.10364812331744], [-33.715487257392525, 115.05364100657803]], {color:'red'}).addTo(mymap)
+	</script>
+
+	<script
+		src="https://embed.github.com/view/geojson/FaunaFication-737-780/geoDataApi/master/geojson/Agile%20Wallaby.geojson">
+	</script>
 
 
 
 </body>
+
 </html>
