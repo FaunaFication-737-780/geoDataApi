@@ -60,10 +60,19 @@ app.get('/dropDB', function(req,res){
 
 })
 
-app.get('/find', function(req, res){
+app.get('/find/name', function(req, res){
   
   let name = encodeURI(req.query.name);
-  findOneData(name, geoCollection,res)
+  var query = {name:{'$regex' : name, '$options' : 'i'}};
+  findOneData(query, geoCollection,res)
+ 
+})
+
+app.get('/find/binomial', function(req, res){
+  
+  let binomial = encodeURI(req.query.binomial);
+  var query = {binomial:{'$regex' : binomial, '$options' : 'i'}};
+  findOneData(query, geoCollection,res)
  
 })
 
@@ -102,13 +111,13 @@ function init() {
 
 }
 
-const findOneData = async (animalName,collection,res)=>{
-  var query = {name: animalName};
+const findOneData = async (query,collection,res)=>{
+  
 
   var options = {
-    // sort matched documents in descending order by rating
+    
     sort: { rating: -1 },
-    // Include only the `title` and `imdb` fields in the returned document
+    
     projection: { _id: 0, name: 1,data:1 },
   };
 
