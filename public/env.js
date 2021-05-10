@@ -1,6 +1,6 @@
 const getData = () => {
     var geoData;
-    $.get('/find', {
+    $.get('/find/name', {
         name: 'BlotchedBluetongue'
     }, function (data) {
         console.log(data);
