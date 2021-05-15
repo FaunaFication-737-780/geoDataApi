@@ -19,12 +19,12 @@ npm start
 ```
 
 ## How to get data from this API
-In this API you have two ways to get the data: use the animal's common name or Binomial. **Notice that the common name may not way equal but the Binomial is.** If you running this API on localhost, get the data from 
+In this API you have two ways to get the data: use the animal's common name or Binomial. **Notice that the common name may not always equal but the Binomial is.** If you running this API on localhost, get the data from 
 ```
 http://localhost:PORT/find/name?name=<"Common name"> 
 http://localhost:PORT/find/binomial?binomial=<"binomial">  
 ```
-Replace the <> context.
+Replace the <> content.
 
 ## How to implement
 To implement the Geojson data into your map, there is two ways: 
